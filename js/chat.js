@@ -1,11 +1,11 @@
 $(document).ready(function()
 {
 
-	var pusher_app_key = 'KEY HERE'; // This will need to be changed to suit your PusherApp app configuration
+	var pusher_app_key = '749eb9565b7e1377c98a'; // This will need to be changed to suit your PusherApp app configuration
 
 	var channel = '';
 	var nickname = $('#nickname').val();
-	
+
 	$('#editNickname').click(function()
 	{
 		$('#extras').css({ padding:"0 0 20px 0" });
@@ -13,7 +13,7 @@ $(document).ready(function()
 		$('#saveNickname').show();
 		$(this).hide();
 	});
-	
+
 	$('#saveNickname').click(function()
 	{
 		$('#extras').css({ padding:"0 0 0 0" });
@@ -22,11 +22,11 @@ $(document).ready(function()
 		$(this).hide();
 		nickname = $('#nickname').val();
 	});
-	
+
 	$('#loading').show();
 	$.post("ajax/requestChannel.php", function(data)
 	{
-	
+
 		$('#loading').hide();
 	    channel = data;
 	    WebSocket.__swfLocation = "js/WebSocketMain.swf";
@@ -47,15 +47,15 @@ $(document).ready(function()
 			$('#messages .new').removeClass("new");
 			$("#messages").attr("scrollTop",$("#messages").attr("scrollHeight") - $('#messages').height());
 	    });
-	    
+
 		$('#message').attr("disabled","");
 		$('#message').val("Type and hit enter...");
-		
+
 		$('#shareChatLinkID').text(channel.replace("pusherchat-",""));
 		$('#shareChatLink').show();
-	    
+
 	});
-	
+
 	$('#message').keyup(function()
 	{
 		if($(this).val().length > 0)
@@ -73,7 +73,7 @@ $(document).ready(function()
 			 		var text = $(this).val();
 			 		$(this).attr("disabled","disabled");
 				 	$(this).blur();
-				 
+
 				   	$.post("ajax/postMessage.php", { chatChannel:channel, "nickname":nickname, message:text }, function(data)
 				   	{
 			   			$("#messages").attr("scrollTop",$("#messages").attr("scrollHeight") - $('#messages').height());
@@ -85,7 +85,7 @@ $(document).ready(function()
 			}
 		}
 	});
-	
+
 	function stripslashes(str) {
 		str=str.replace(/\\'/g,'\'');
 		str=str.replace(/\\"/g,'"');
@@ -93,10 +93,10 @@ $(document).ready(function()
 		str=str.replace(/\\\\/g,'\\');
 		return str;
 	}
-	
+
 	function replaceURLWithHTMLLinks(text) {
 		var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-		return text.replace(exp,"<a href='$1'>$1</a>"); 
+		return text.replace(exp,"<a href='$1'>$1</a>");
 	}
-	
+
 });

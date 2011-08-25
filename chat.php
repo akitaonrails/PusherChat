@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="css/chat.css">
 		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 		<script type="text/javascript" src="js/placeholder.js"></script>
-		<script src="http://js.pusherapp.com/1.4/pusher.min.js"></script>
+		<script src="http://js.pusherapp.com/1.9/pusher.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="js/chat.js"></script>
 	</head>
 	<body>
